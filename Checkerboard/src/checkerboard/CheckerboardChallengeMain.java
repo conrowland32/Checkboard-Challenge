@@ -9,22 +9,29 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
  *
  * @author Connor Rowland
  */
-public class CheckerboardChallenge extends Application {
+public class CheckerboardChallengeMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("CheckerboardUI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CheckerboardUI.fxml"));
+        Parent root = (Parent)fxmlLoader.load();
+        CheckerboardUIController controller = (CheckerboardUIController)fxmlLoader.getController();
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Checkerboard Challenge");
         stage.show();
+        
+        controller.createInitialBoard();
     }
 
     /**
