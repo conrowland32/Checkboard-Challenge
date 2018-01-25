@@ -9,8 +9,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +29,7 @@ public class CheckerboardChallengeMain extends Application {
         stage.setTitle("Checkerboard Challenge");
         stage.show();
         
-        controller.createInitialBoard();
+        controller.createInitialBoard(stage);
     }
 
     /**

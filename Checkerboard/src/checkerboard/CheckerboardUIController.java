@@ -7,13 +7,13 @@ package checkerboard;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 /**
  *
@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 public class CheckerboardUIController implements Initializable {
     
     private CheckerBoard board;
+    private Stage stage;
     
     @FXML
     private VBox rootBox;
@@ -34,16 +35,17 @@ public class CheckerboardUIController implements Initializable {
         
     }
     
-    public void createInitialBoard() {
+    public void createInitialBoard(Stage stage) {
+        this.stage = stage;
         board = new CheckerBoard(8, 8, rootBox.getWidth(), (rootBox.getHeight() - menuBar.getHeight()));
         board.build();
         rootBox.getChildren().add(board.getBoard());
         
-        rootBox.widthProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldWidth, Number newWidth) -> {
+        this.stage.widthProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldWidth, Number newWidth) -> {
             this.resizeBoard();
         });
         
-        rootBox.heightProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldHeight, Number newHeight) -> {
+        this.stage.heightProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldHeight, Number newHeight) -> {
             this.resizeBoard();
         });
     }

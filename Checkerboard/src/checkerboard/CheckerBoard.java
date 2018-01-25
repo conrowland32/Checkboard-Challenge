@@ -4,12 +4,7 @@
 
 package checkerboard;
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -42,14 +37,15 @@ public class CheckerBoard {
     }
     
     public AnchorPane build() {
-        GridPane gridPane = new GridPane();
-        for(int i = 0; i < this.numRows; i++) {
-            for(int j = 0; j < this.numCols; j++) {
-                Rectangle rect = new Rectangle(rectangleWidth, rectangleHeight, (i + j)%2 == 0 ? this.lightColor : this.darkColor);
-                gridPane.add(rect, j, i);
+        boardPane = new AnchorPane();
+        for(int row = 0; row < this.numRows; row++) {
+            for(int col = 0; col < this.numCols; col++) {
+                Rectangle rect = new Rectangle(rectangleWidth, rectangleHeight, (row + col)%2 == 0 ? this.lightColor : this.darkColor);
+                boardPane.getChildren().add(rect);
+                AnchorPane.setLeftAnchor(rect, rectangleWidth*col);
+                AnchorPane.setTopAnchor(rect, rectangleHeight*row);
             }
         }
-        boardPane = new AnchorPane(gridPane);
         return boardPane;
     }
     
